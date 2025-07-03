@@ -6,7 +6,11 @@
     @include('layouts.sections.head')
 
 
-<script defer src="https://static.getbutton.io/widget/bundle.js?id=5lUUg" ></script>
+<script
+  src="https://widget.galichat.com/gali-embeded.min.js"
+  chat-hash="3sj5hrob0rrarthe1fllx"
+  defer>
+</script>
 
     @livewireStyles
 
@@ -51,6 +55,8 @@
 
     @stack('modals')
     @livewireScripts
+    {{-- <script src="//unpkg.com/alpinejs" defer></script> --}}
+
 </body>
 
 </html>

@@ -12,6 +12,7 @@
         "jenssegers/agent": "^2.6",
         "laravel/framework": "^11.31",
         "laravel/tinker": "^2.9",
+        "livewire/livewire": "^3.6",
         "spatie/laravel-cookie-consent": "^3.3",
         "spatie/laravel-sitemap": "^7.3",
         "torann/geoip": "^3.0",

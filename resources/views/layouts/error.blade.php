@@ -3,7 +3,7 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
-    
+
     @include('layouts.sections.head')
 
     <link rel="stylesheet" type="text/css" href="{{asset("errors/{$code}/style.css")}}">
@@ -28,7 +28,7 @@
 </style>
 <body>
     @include('layouts.sections.body')
-    <img src="{{ asset('images/backgrounds/1.jpg') }}" alt="background image"
+    <img src="{{ asset('images/error.jpg') }}" alt="background image"
         class="background-img">
   {{ $slot }}
 <script type="text/javascript" src="{{asset("errors/{$code}/script.js")}}"></script>

@@ -12,19 +12,19 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('participations', function (Blueprint $table) {
-        $table->id();
-        $table->string('company_name');
-        $table->string('responsible_person');
-        $table->string('job_title');
-        $table->string('email');
-        $table->string('phone_number');
-        $table->string('nationality');
-        $table->text('full_address');
-        $table->string('commercial_registration_no');
-        $table->string('activity_type');
-        $table->integer('requested_area');
-        $table->enum('setup_preference', ['raw_space', 'not_equipped', 'fully_equipped']);
-        $table->timestamps();
+            $table->id();
+            $table->string('company_name');
+            $table->string('commercial_registration_no');
+            $table->string('activity_type');
+            $table->text('full_address');
+            $table->string('responsible_person');
+            $table->string('job_title');
+            $table->string('nationality');
+            $table->string('email');
+            $table->string('phone_number');
+            $table->integer('requested_area');
+            $table->enum('setup_preference', ['raw_space', 'not_equipped', 'fully_equipped']);
+            $table->timestamps();
         });
     }
 

@@ -2,6 +2,13 @@ import './bootstrap';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import '../css/animations.css';
+// import Alpine from "alpinejs";
+// import focus from "@alpinejs/focus";
+
+// window.Alpine = Alpine;
+// Alpine.plugin(focus);
+// Alpine.start();
+
 
 import { initAlert, initTabs, initGallery, initAccordion, cleanupPopovers, cleanupDropdowns } from 'david-ai';
 

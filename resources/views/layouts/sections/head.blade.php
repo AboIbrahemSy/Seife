@@ -15,8 +15,8 @@
 
 {{-- @include('layouts.sections.sem') --}}
 
-@vite(["resources/css/app.css", 'resources/js/app.js'])
 <wireui:scripts />
+@vite(["resources/css/app.css", 'resources/js/app.js'])
 
 {{-- @production --}}
 @include('cookie-consent::index')

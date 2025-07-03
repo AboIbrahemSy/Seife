@@ -23,4 +23,7 @@ return [
             'paragraph' => '٢٧ آب ولغاية ٥ أيلول ٢٠٢٥ - دمشق مدينة المعارض',
         ],
     ],
+    "investor_form_title" => "المستثمر",
+    "subscribe_form_title" => "الاشتراك",
+    "visitor_form_title" => "نموذج زائر",
 ];
