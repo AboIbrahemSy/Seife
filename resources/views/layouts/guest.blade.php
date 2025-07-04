@@ -6,11 +6,7 @@
     @include('layouts.sections.head')
 
 
-<script
-  src="https://widget.galichat.com/gali-embeded.min.js"
-  chat-hash="3sj5hrob0rrarthe1fllx"
-  defer>
-</script>
+    <script src="https://widget.galichat.com/gali-embeded.min.js" chat-hash="3sj5hrob0rrarthe1fllx" defer></script>
 
     @livewireStyles
 
@@ -19,7 +15,6 @@
 
 </head>
 <style>
-
     /* html{cursor: url('path-to-image.png'), url('path-to-image-2.svg'), url('path-to-image-3.jpeg'), auto;}  */
     .body-gb {
         /* background: linear-gradient(rgba(18, 18, 18, 0) 0%, rgba(18, 18, 18, 0.95) 65.1%, rgb(18, 18, 18) 100%); */
@@ -38,18 +33,19 @@
     </div> --}}
 
     {{-- <div id="root" class="w-screen h-screen overflow-scroll"> --}}
-        {{-- @include('layouts.sections.navigation-menu') --}}
-        @include('layouts.sections.navbar')
-        <main id="app-main" class="w-full">
-{{ $slot }}
+    {{-- @include('layouts.sections.navigation-menu') --}}
+    @include('layouts.sections.navbar')
+    <main id="app-main" class="w-full">
+        {{ $slot }}
 
 
-            @if (!request()->routeIs('privacy-policy')
-            && !request()->routeIs('terms-of-service')
-            && !request()->routeIs('subscription-terms'))
-                @include('layouts.sections.footer')
-            @endif
-        </main>
+        @if (
+            !request()->routeIs('privacy-policy') &&
+                !request()->routeIs('terms-of-service') &&
+                !request()->routeIs('subscription-terms'))
+            @include('layouts.sections.footer')
+        @endif
+    </main>
     {{-- </div> --}}
 
 

@@ -2,18 +2,19 @@ import "vanilla-cookieconsent/dist/cookieconsent.css";
 import * as CookieConsent from "vanilla-cookieconsent";
 import "@orestbida/iframemanager";
 
-// document.body.innerHTML += `
-//     <style>
-//         .cc--darkmode {
-//             --cc-btn-primary-bg: #66BB6A;
-//             --cc-btn-primary-color: #fff;
-//             --cc-btn-primary-border-color:#66BB6A;
-//             --cc-btn-primary-hover-bg: #66BB6A;
-//             --cc-btn-primary-hover-color: #fff;
-//             --cc-btn-primary-hover-border-color: #66BB6A;
-//         }
-//     </style>
-// `;
+document.body.innerHTML += `
+    <style>
+    .cc--light-funky {
+        --cc-btn-primary-bg: #4CAF50;
+        --cc-btn-primary-color: #fff; /* ذهبي داكن */
+        --cc-btn-primary-border-color: #4CAF50;
+        --cc-btn-primary-hover-bg: #66BB6A;
+        --cc-btn-primary-hover-color: #fff; /* ذهبي فاتح */
+        --cc-btn-primary-hover-border-color: #66BB6A;
+    }
+</style>
+
+`;
 let CookieConsentActive = false;
 
 window.onload = () => {
@@ -22,6 +23,7 @@ window.onload = () => {
             CookieConsentActive = true;
             // Enable dark mode
             // document.documentElement.classList.add('cc--darkmode');
+            document.documentElement.classList.add('cc--light-funky');
             // Define dataLayer and the gtag function.
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
