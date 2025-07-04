@@ -6,7 +6,7 @@ use App\Http\Controllers\IndexController;
 
 Route::controller(IndexController::class)->group(function () {
     Route::get('/', 'home')->name('home');
-    Route::get('/registrations', 'registrations')->name('registrations');
+    Route::get('/audios', 'audios')->name('audios');
     Route::get('/events', 'events')->name('events');
     Route::get('/book-stand', 'bookStand')->name('book_stand');
     Route::get('/gallery', 'gallery')->name('gallery');
@@ -19,6 +19,7 @@ Route::controller(IndexController::class)->group(function () {
     Route::get('/about', 'about')->name('about');
     Route::get('/faq', 'faq')->name('faq');
     Route::get('/contact', 'contact')->name('contact');
+    Route::post('/contact/send', 'contactSend')->name('contact.send');
 });
 
 Route::controller(FilesController::class)->group(function () {

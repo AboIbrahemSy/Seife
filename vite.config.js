@@ -7,7 +7,8 @@ export default defineConfig({
             input: [
                 'resources/css/app.css',
                 'resources/js/app.js',
-                'resources/js/vanilla-cookieconsent.js'
+                'resources/js/vanilla-cookieconsent.js',
+                'resources/css/filament/theme.css'
             ],
             refresh: true,
         }),

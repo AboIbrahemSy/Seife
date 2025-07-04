@@ -1,7 +1,7 @@
 @php
     $links = [
         ['route' => 'home', 'label' => __('pages.links.home')],
-        ['route' => 'registrations', 'label' => __('pages.links.registrations')],
+        ['route' => 'audios', 'label' => __('pages.links.audios')],
         ['route' => 'events', 'label' => __('pages.links.events')],
         ['route' => 'book_stand', 'label' => __('pages.links.book_stand')],
         ['route' => 'gallery', 'label' => __('pages.links.gallery')],
@@ -16,6 +16,7 @@
         // ["route" => "contact",      "label" => __("pages.links.contact")],
     ];
     $currentLocale = app()->getLocale();
+    $arrLang = config('app.locales');
 @endphp
 
 <nav id="main-navbar" class="fixed top-0 w-full p-2 mx-auto text-white bg-transparent z-70">
@@ -68,21 +69,16 @@
 
                 <div class="dropdown" data-dui-placement="bottom-start">
                     <div data-dui-toggle="dropdown" aria-expanded="false"
-                        class="flex items-center cursor-pointer py-1.5 px-2.5 rounded-md align-middle select-none font-sans transition-all duration-300 ease-in aria-disabled:opacity-50 aria-disabled:pointer-events-none bg-transparent text-white hover:text-[#333] hover:bg-white focus:bg-white focus:text-[#333] dark:hover:text-white">
-                        <span class="grid place-items-center shrink-0 ms-auto pr-0.5">
+                        class="flex items-center {{ $currentLocale == 'ar' ? 'flex-row-reverse' : 'flex-row' }}  cursor-pointer py-1.5 px-2.5 rounded-md align-middle select-none font-sans transition-all duration-300 ease-in aria-disabled:opacity-50 aria-disabled:pointer-events-none bg-transparent text-white hover:text-[#333] hover:bg-white focus:bg-white focus:text-[#333] dark:hover:text-white">
+                        <small
+                            class="font-sans text-sm antialiased text-current">{{ __('pages.links.about') }}</small>
+                        <span
+                            class="grid place-items-center shrink-0 ms-auto {{ $currentLocale == 'ar' ? 'pr-1.5' : 'ps-1.5' }}">
                             <svg width="1.5em" height="1.5em" stroke-width="1.5" viewBox="0 0 24 24" fill="none"
                                 xmlns="http://www.w3.org/2000/svg" color="currentColor"
                                 class="h-3.5 w-3.5 group-data-[open=true]:rotate-180">
                                 <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-linecap="round"
                                     stroke-linejoin="round"></path>
-                            </svg>
-                        </span>
-                        {{-- <small class="font-sans text-sm antialiased text-current">...</small> --}}
-                        <span class="grid place-items-center shrink-0 me-2.5">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                stroke-width="1.5" stroke="currentColor" class="size-6">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M8.625 12a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H8.25m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H12m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0h-.375M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
                             </svg>
                         </span>
                     </div>
@@ -102,8 +98,9 @@
                 <div class="dropdown" data-dui-placement="bottom-start">
                     <div data-dui-toggle="dropdown" aria-expanded="false"
                         class="flex items-center cursor-pointer {{ $currentLocale == 'ar' ? 'flex-row-reverse' : 'flex-row' }} py-1.5 px-2.5 rounded-md align-middle select-none font-sans transition-all duration-300 ease-in aria-disabled:opacity-50 aria-disabled:pointer-events-none bg-transparent text-white hover:text-[#333] hover:bg-white focus:bg-white focus:text-[#333] dark:hover:text-white">
-                        <small
-                            class="font-sans text-sm antialiased text-current">{{ $currentLocale == 'ar' ? 'العربية' : 'English' }}</small>
+                        <small class="font-sans text-sm antialiased text-current">
+                            {{ $arrLang[app()->getLocale()]['native'] }}
+                        </small>
                         <span
                             class="grid place-items-center shrink-0 ms-auto {{ $currentLocale == 'ar' ? 'pr-1.5' : 'ps-1.5' }}"><svg
                                 width="1.5em" height="1.5em" stroke-width="1.5" viewBox="0 0 24 24" fill="none"
@@ -115,11 +112,14 @@
                         </span>
                     </div>
                     <div data-dui-role="menu"
-                        class="z-10 hidden p-1 mt-2 bg-white border rounded-lg shadow-sm border-stone-200">
-                        <a href="{{ route('lang.switch', ['lang' => 'en']) }}"
-                            class="block px-4 py-2 text-sm rounded-md text-stone-800 hover:bg-stone-100">English</a>
-                        <a href="{{ route('lang.switch', ['lang' => 'ar']) }}"
-                            class="block px-4 py-2 text-sm rounded-md text-stone-800 hover:bg-stone-100">العربية</a>
+                        class="z-10 hidden p-1 bg-white border rounded-lg shadow-sm border-stone-200">
+                        @foreach ($arrLang as $localeCode => $properties)
+                                <a rel="alternate" hreflang="{{ $localeCode }}"
+                                    class="block px-4 py-2 text-sm rounded-md text-stone-800 hover:bg-stone-100"
+                                    href="{{ request()->fullUrlWithQuery(['lang' => $localeCode]) }}">
+                                    {{ $properties['native'] }}
+                                </a>
+                        @endforeach
                     </div>
                 </div>
             </div>

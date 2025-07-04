@@ -1,6 +1,6 @@
 <x-guest-layout>
 
-    <x-hero image="{{ asset('images/gallery_hero.webp') }}" title="معرض الصور" />
+    <x-hero image="{{ asset('images/gallery_hero.webp') }}"  title="{{ __('pages.gallery_title') }}" />
 
 
     <div class="container mx-auto my-24">
@@ -48,7 +48,7 @@
             </div>
             <div class="grid w-full grid-cols-5 gap-4 p-2 overflow-x-auto h-44 soft-scrollbar">
                         <div class="relative flex items-center gap-5 h-32 w-[1500px]" >
-                        
+
                 <div>
                     <img data-thumbnail
                         src="https://images.unsplash.com/photo-1499696010180-025ef6e1a8f9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"

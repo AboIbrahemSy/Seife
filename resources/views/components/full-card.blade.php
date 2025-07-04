@@ -30,13 +30,13 @@
         @if(!empty($subTitle))
             <p class="mb-4 font-sans text-base antialiased text-current text-stone-600">{{ $subTitle }}</p>
         @endif
-        <p class="mb-4 text-sm text-stone-600">{{ $description }}</p>
+        <p class="mb-4 text-sm text-stone-600">{!! $description !!}</p>
 
         @if(!empty($url))
             <div class="flex justify-start">
                 <a href="{{ $url }}"
                     class="flex {{ app()->getLocale() == 'ar' ? 'flex-row-reverse' : 'flex-row' }} items-center px-3 py-1.5 text-xs font-medium text-stone-600 hover:text-stone-800 bg-stone-100 hover:bg-stone-200 border border-stone-200 rounded-lg transition-colors">
-                    عرض
+                    {{__('pages.show')}}
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
                         class="{{ app()->getLocale() == 'ar' ? 'rotate-180 mr-1' : 'rotate-0 ml-1' }} w-3 h-3">
                         <path fill-rule="evenodd"

@@ -12,6 +12,7 @@ use Filament\Panel;
 class User extends Authenticatable implements FilamentUser
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
+    use \TomatoPHP\FilamentLanguageSwitcher\Traits\InteractsWithLanguages;
     use HasFactory, Notifiable;
 
     public function canAccessPanel(Panel $panel): bool

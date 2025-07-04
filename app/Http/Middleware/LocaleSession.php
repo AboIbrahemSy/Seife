@@ -16,22 +16,16 @@ class LocaleSession
      */
     public function handle(Request $request, Closure $next): Response
     {
-        $localeKey = config('app.localesKey');
+        $localeKey = config('app.localesKey', ['ar', 'en']);
 
-        // If `lang` query parameter is present, validate and update the session
         if ($request->has('lang')) {
             $validatedData = $request->validate([
                 'lang' => 'string|max:2|in:' . implode(',', $localeKey)
             ]);
-
-            // Store the locale in the session
             session(['LOCALELANG' => $validatedData['lang']]);
         }
 
-        // Get the current locale from the session or default to app's locale
         $locale = session('LOCALELANG', app()->getLocale());
-
-        // Set the application locale
         App::setLocale($locale);
 
         return $next($request);
