@@ -4,6 +4,24 @@
 
     <div class="container py-24 mx-auto">
 
+
+<div class="flex w-6/12 tab-group" data-dui-orientation="vertical">
+  <div role="tablist" class="relative flex flex-col border-r border-stone-200">
+    <div class="tab-indicator absolute left-0 w-0.5 bg-stone-800 transition-transform duration-300"></div>
+    <a href="#" class="px-4 py-2 text-sm tab-link active text-stone-800 hover:text-stone-500" data-dui-tab-target="underline-vertical-html">HTML</a>
+    <a href="#" class="px-4 py-2 text-sm tab-link text-stone-800 hover:text-stone-500" data-dui-tab-target="underline-vertical-react">React</a>
+    <a href="#" class="px-4 py-2 text-sm tab-link text-stone-800 hover:text-stone-500" data-dui-tab-target="underline-vertical-vue">Vue</a>
+    <a href="#" class="px-4 py-2 text-sm tab-link text-stone-800 hover:text-stone-500" data-dui-tab-target="underline-vertical-angular">Angular</a>
+    <a href="#" class="px-4 py-2 text-sm tab-link text-stone-800 hover:text-stone-500" data-dui-tab-target="underline-vertical-svelte">Svelte</a>
+  </div>
+  <div id="underline-vertical-html" class="block w-full p-4 text-sm tab-content text-stone-500">Content HTML</div>
+  <div id="underline-vertical-react" class="hidden w-full p-4 text-sm tab-content text-stone-500">Content React</div>
+  <div id="underline-vertical-vue" class="hidden w-full p-4 text-sm tab-content text-stone-500">Content Vue</div>
+  <div id="underline-vertical-angular" class="hidden w-full p-4 text-sm tab-content text-stone-500">Content Angular</div>
+  <div id="underline-vertical-svelte" class="hidden w-full p-4 text-sm tab-content text-stone-500">Content Svelte</div>
+</div>
+
+
         {{-- inline-flex items-center justify-center border align-middle select-none font-sans font-medium text-center duration-300 ease-in disabled:opacity-50 disabled:shadow-none disabled:cursor-not-allowed focus:shadow-none text-sm py-2 px-4 shadow-sm hover:shadow-md bg-green-500 hover:bg-success-light relative bg-gradient-to-b from-green-500 to-green-600 border-green-600 text-stone-50 rounded-lg hover:bg-gradient-to-b hover:from-green-600 hover:to-green-600 hover:border-green-600 after:absolute after:inset-0 after:rounded-[inherit] after:box-shadow after:shadow-[inset_0_1px_0px_rgba(255,255,255,0.35),inset_0_-2px_0px_rgba(0,0,0,0.18)] after:pointer-events-none transition antialiased --}}
 <div class="flex gap-2 mb-4">
   <button onclick="toggleAccordionById('#controlledAccordion1')" class="inline-flex items-center justify-center border align-middle select-none font-sans font-medium text-center duration-300 ease-in disabled:opacity-50 disabled:shadow-none disabled:cursor-not-allowed focus:shadow-none text-sm py-2 px-4 shadow-sm hover:shadow-md bg-brand-800 hover:bg-brand-700 relative bg-gradient-to-b from-brand-700 to-brand-800 border-brand-900 text-brand-50 rounded-lg hover:bg-gradient-to-b hover:from-brand-800 hover:to-brand-800 hover:border-brand-900 after:absolute after:inset-0 after:rounded-[inherit] after:box-shadow after:shadow-[inset_0_1px_0px_rgba(255,255,255,0.25),inset_0_-2px_0px_rgba(0,0,0,0.35)] after:pointer-events-none transition antialiased">What is David UI?</button>

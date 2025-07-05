@@ -95,7 +95,6 @@ public static function form(Form $form): Form
                     ->sortable(),
             ])
             ->filters([
-                // أضف فلاتر عند الحاجة
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),

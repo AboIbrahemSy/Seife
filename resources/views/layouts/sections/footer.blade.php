@@ -18,7 +18,7 @@
     ];
     $currentLocale = app()->getLocale();
 @endphp
-<footer class="relative w-full mt-24 {{ $currentLocale == 'ar' ? 'rtl' : '' }}">
+<footer class="relative w-full mt-24 mb-11 {{ $currentLocale == 'ar' ? 'rtl' : '' }}">
     <div class="w-full px-8 mx-auto max-w-7xl">
         <div class="grid justify-between grid-cols-1 gap-4 pb-4 border-b md:grid-cols-2 border-stone-200 ">
             <h6 class="mb-4 font-sans text-base antialiased font-bold text-current md:text-lg lg:text-xl">{{ __('pages.links.logo')}}</h6>

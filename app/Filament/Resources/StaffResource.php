@@ -1,18 +1,14 @@
 <?php
-
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\StaffResource\Pages;
-use App\Filament\Resources\StaffResource\RelationManagers;
 use App\Models\Staff;
 use Filament\Forms;
 use Filament\Forms\Form;
+use Filament\Resources\Concerns\Translatable;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
-use Filament\Resources\Concerns\Translatable; // resource
 
 class StaffResource extends Resource
 {
@@ -46,7 +42,6 @@ class StaffResource extends Resource
         return __('pages.staff');
     }
 
-
     public static function getTranslatableLocales(): array
     {
         return ['en', 'ar'];
@@ -56,11 +51,25 @@ class StaffResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('name')->label('Name (EN)')->required()->translatable(),
-                Forms\Components\TextInput::make('job_title')->label('Job Title (EN)')->translatable(),
-                Forms\Components\TextInput::make('email')->email(),
-                Forms\Components\TextInput::make('phone'),
-                Forms\Components\FileUpload::make('image')->image()->directory('images/staff')->label(__('feilds.image_path'))->required(),
+                Forms\Components\TextInput::make('name')
+                    ->label(__('forms.name'))
+                    ->required(),
+
+                Forms\Components\TextInput::make('job_title')
+                    ->label(__('forms.job_title')),
+
+                Forms\Components\TextInput::make('email')
+                    ->email()
+                    ->label(__('forms.email')),
+
+                Forms\Components\TextInput::make('phone')
+                    ->label(__('forms.phone')),
+
+                Forms\Components\FileUpload::make('image')
+                    ->image()
+                    ->directory('images/staff')
+                    ->label(__('forms.image_path'))
+                    ->required(),
             ]);
     }
 
@@ -68,11 +77,17 @@ class StaffResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('name'),
-                Tables\Columns\TextColumn::make('job_title'),
-                Tables\Columns\TextColumn::make('email'),
-                Tables\Columns\TextColumn::make('phone'),
-                Tables\Columns\ImageColumn::make('image')->rounded()->label(__('feilds.image_path')),
+                Tables\Columns\TextColumn::make('name')
+                    ->label(__('forms.name')),
+                Tables\Columns\TextColumn::make('job_title')
+                    ->label(__('forms.job_title')),
+                Tables\Columns\TextColumn::make('email')
+                    ->label(__('forms.email')),
+                Tables\Columns\TextColumn::make('phone')
+                    ->label(__('forms.phone')),
+                Tables\Columns\ImageColumn::make('image')
+                    ->rounded()
+                    ->label(__('forms.image_path')),
             ])
             ->filters([
                 //
@@ -97,9 +112,9 @@ class StaffResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListStaff::route('/'),
+            'index'  => Pages\ListStaff::route('/'),
             'create' => Pages\CreateStaff::route('/create'),
-            'edit' => Pages\EditStaff::route('/{record}/edit'),
+            'edit'   => Pages\EditStaff::route('/{record}/edit'),
         ];
     }
 }

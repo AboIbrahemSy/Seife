@@ -3,7 +3,7 @@
 
 
 
-    <div class="container mx-auto my-24 items-center justify-start flex flex-col gap-16">
+    <div class="container flex flex-col items-center justify-start gap-16 mx-auto my-24">
 
 
         <div id="news1"
@@ -12,13 +12,13 @@
              data-aos-duration="700"
             class="max-w-3xl rounded-lg shadow-md border border-stone-100 overflow-hidden flex {{ app()->getLocale() == 'ar' ? '' : 'rtl' }}">
             <div class="w-1/3 p-1">
-                <div class="h-full rounded-md overflow-hidden">
-                    <img src="{{ asset('images/news1.webp') }}" alt="Background" class="w-full h-full object-cover">
+                <div class="h-full overflow-hidden rounded-md">
+                    <img src="{{ asset('images/news1.webp') }}" alt="Background" class="object-cover w-full h-full">
                 </div>
             </div>
             <div class="w-2/3 px-4 py-6 flex flex-col {{ app()->getLocale() == 'ar' ? 'items-end' : '' }}">
-                <h3 class="text-xl font-bold text-stone-800 mb-2 text-left">{{ __('pages.news.section1.title') }}</h3>
-                <p class="text-stone-600 mb-4 text-left text-sm flex-grow">{{ __('pages.news.section1.paragraph') }}</p>
+                <h3 class="mb-2 text-xl font-bold text-left text-stone-800">{{ __('pages.news.section1.title') }}</h3>
+                <p class="flex-grow mb-4 text-sm text-left text-stone-600">{{ __('pages.news.section1.paragraph') }}</p>
                 <div class="flex justify-start mt-auto">
                     <a href="#news1"
                         class="inline-flex items-center {{ app()->getLocale() == 'ar' ? 'flex-row-reverse' : 'flex-row' }} px-3 py-1.5 text-xs font-medium text-stone-600 hover:text-stone-800 bg-stone-100 hover:bg-stone-200 border border-stone-200 rounded-lg transition-colors">
@@ -40,9 +40,9 @@
             {{ __('pages.breaking_news_title') }}</h1>
 
 
-        <div id="news" class="splide" role="group" aria-label="Breaking News">
-            <div class="splide__track mx-auto w-2/3">
-                <div class="splide__list gap-5">
+        <div id="news_page_splide" class="w-3/4 mx-auto splide" role="group" aria-label="Breaking News">
+            <div class=" splide__track">
+                <div class="gap-5 splide__list">
                     @foreach ($tickerItems as $item)
                         <div
                             class="splide__slide mx-5 max-w-sm p-6 border shadow-xl bg-gradient-to-br from-stone-50 to-stone-200 rounded-xl border-stone-200 {{ app()->getLocale() == 'ar' ? 'text-right' : 'text-left' }}">
@@ -62,6 +62,9 @@
                 </div>
             </div>
         </div>
+
+
+
 
 
         <h1 class="z-10 mt-4 text-2xl font-bold text-center text-brand-500 md:text-3xl drop-shadow-lg">

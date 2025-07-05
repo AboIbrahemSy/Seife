@@ -39,6 +39,8 @@
         {{ $slot }}
 
 
+
+    @include('layouts.sections.news-splide')
         @if (
             !request()->routeIs('privacy-policy') &&
                 !request()->routeIs('terms-of-service') &&
