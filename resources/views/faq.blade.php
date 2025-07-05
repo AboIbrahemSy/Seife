@@ -1,63 +1,53 @@
+@php
+    $faqsAllLang = include app_path('helper/Faq.php');
+    $currentLocale = app()->getLocale(); // "ar" or "en"
+    $faqsData = $faqsAllLang[$currentLocale] ?? reset($faqsAllLang); // fallback to any language if missing
+    $tabTitles = array_keys($faqsData);
+@endphp
+
 <x-guest-layout>
     <x-hero image="{{ asset('images/gallery_hero.webp') }}" title="{{ __('pages.faq_title') }}" />
 
 
-    <div class="container py-24 mx-auto">
+    <div class="container py-24 mx-auto {{ app()->getLocale() == 'ar' ? 'rtl' : '' }}">
 
 
-<div class="flex w-6/12 tab-group" data-dui-orientation="vertical">
-  <div role="tablist" class="relative flex flex-col border-r border-stone-200">
-    <div class="tab-indicator absolute left-0 w-0.5 bg-stone-800 transition-transform duration-300"></div>
-    <a href="#" class="px-4 py-2 text-sm tab-link active text-stone-800 hover:text-stone-500" data-dui-tab-target="underline-vertical-html">HTML</a>
-    <a href="#" class="px-4 py-2 text-sm tab-link text-stone-800 hover:text-stone-500" data-dui-tab-target="underline-vertical-react">React</a>
-    <a href="#" class="px-4 py-2 text-sm tab-link text-stone-800 hover:text-stone-500" data-dui-tab-target="underline-vertical-vue">Vue</a>
-    <a href="#" class="px-4 py-2 text-sm tab-link text-stone-800 hover:text-stone-500" data-dui-tab-target="underline-vertical-angular">Angular</a>
-    <a href="#" class="px-4 py-2 text-sm tab-link text-stone-800 hover:text-stone-500" data-dui-tab-target="underline-vertical-svelte">Svelte</a>
-  </div>
-  <div id="underline-vertical-html" class="block w-full p-4 text-sm tab-content text-stone-500">Content HTML</div>
-  <div id="underline-vertical-react" class="hidden w-full p-4 text-sm tab-content text-stone-500">Content React</div>
-  <div id="underline-vertical-vue" class="hidden w-full p-4 text-sm tab-content text-stone-500">Content Vue</div>
-  <div id="underline-vertical-angular" class="hidden w-full p-4 text-sm tab-content text-stone-500">Content Angular</div>
-  <div id="underline-vertical-svelte" class="hidden w-full p-4 text-sm tab-content text-stone-500">Content Svelte</div>
-</div>
+        <div class="flex w-3/4 tab-group mx-auto" data-dui-orientation="vertical">
+            <div role="tablist" class="w-1/4 relative flex flex-col {{ app()->getLocale() == 'ar' ? 'border-l' : 'border-r' }} border-stone-200">
+                <div class="tab-indicator absolute left-0 w-0.5 bg-green-500 transition-transform duration-300"></div>
+                @foreach ($tabTitles as $title)
+                    <a href="#"
+                        class="px-4 py-2 w-full text-sm tab-link {{ $loop->first ? 'active text-green-800' : 'text-green-800' }} hover:text-green-500"
+                        data-dui-tab-target="faq-tab-{{ $loop->index }}">
+                        {{ $title }}
+                    </a>
+                @endforeach
+            </div>
+            @foreach ($faqsData as $tabTitle => $faqs)
+                <div id="faq-tab-{{ $loop->index }}"
+                    class="{{ $loop->first ? 'block' : 'hidden' }} w-3/4 p-4 text-sm tab-content text-stone-500">
+                    <x-faq-section :faqs="$faqs" />
+                </div>
+            @endforeach
+        </div>
 
 
-        {{-- inline-flex items-center justify-center border align-middle select-none font-sans font-medium text-center duration-300 ease-in disabled:opacity-50 disabled:shadow-none disabled:cursor-not-allowed focus:shadow-none text-sm py-2 px-4 shadow-sm hover:shadow-md bg-green-500 hover:bg-success-light relative bg-gradient-to-b from-green-500 to-green-600 border-green-600 text-stone-50 rounded-lg hover:bg-gradient-to-b hover:from-green-600 hover:to-green-600 hover:border-green-600 after:absolute after:inset-0 after:rounded-[inherit] after:box-shadow after:shadow-[inset_0_1px_0px_rgba(255,255,255,0.35),inset_0_-2px_0px_rgba(0,0,0,0.18)] after:pointer-events-none transition antialiased --}}
-<div class="flex gap-2 mb-4">
-  <button onclick="toggleAccordionById('#controlledAccordion1')" class="inline-flex items-center justify-center border align-middle select-none font-sans font-medium text-center duration-300 ease-in disabled:opacity-50 disabled:shadow-none disabled:cursor-not-allowed focus:shadow-none text-sm py-2 px-4 shadow-sm hover:shadow-md bg-brand-800 hover:bg-brand-700 relative bg-gradient-to-b from-brand-700 to-brand-800 border-brand-900 text-brand-50 rounded-lg hover:bg-gradient-to-b hover:from-brand-800 hover:to-brand-800 hover:border-brand-900 after:absolute after:inset-0 after:rounded-[inherit] after:box-shadow after:shadow-[inset_0_1px_0px_rgba(255,255,255,0.25),inset_0_-2px_0px_rgba(0,0,0,0.35)] after:pointer-events-none transition antialiased">What is David UI?</button>
-  <button onclick="toggleAccordionById('#controlledAccordion2')" class="inline-flex items-center justify-center border align-middle select-none font-sans font-medium text-center duration-300 ease-in disabled:opacity-50 disabled:shadow-none disabled:cursor-not-allowed focus:shadow-none text-sm py-2 px-4 shadow-sm hover:shadow-md bg-brand-800 hover:bg-brand-700 relative bg-gradient-to-b from-brand-700 to-brand-800 border-brand-900 text-brand-50 rounded-lg hover:bg-gradient-to-b hover:from-brand-800 hover:to-brand-800 hover:border-brand-900 after:absolute after:inset-0 after:rounded-[inherit] after:box-shadow after:shadow-[inset_0_1px_0px_rgba(255,255,255,0.25),inset_0_-2px_0px_rgba(0,0,0,0.35)] after:pointer-events-none transition antialiased">Why choose David UI?</button>
-</div>
 
-<!-- Accordion Component -->
-<div class="block w-full group" aria-disabled="false" data-dui-accordion-container data-dui-accordion-mode="exclusive">
-  <div
-    class="flex items-center justify-between w-full py-5 font-medium text-left cursor-pointer dark:text-white text-stone-800"
-    data-dui-accordion-toggle
-    data-dui-accordion-target="#controlledAccordion1"
-    aria-expanded="false">
-    What is David UI?
-    <svg data-dui-accordion-icon width="1.5em" height="1.5em" strokeWidth="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="currentColor" class="w-4 h-4 rotate-180">
-      <path d="M6 9L12 15L18 9" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"></path>
-    </svg>
-  </div>
-  <div id="controlledAccordion1" class="overflow-hidden transition-all duration-300 border-b border-stone-200 dark:border-stone-700">
-    <p class="mb-5 text-sm text-stone-500 dark:text-stone-400">David UI is a comprehensive UI library built with Tailwind CSS, offering modern and customizable components for web development.</p>
-  </div>
 
-  <div
-    class="flex items-center justify-between w-full py-5 font-medium text-left cursor-pointer dark:text-white text-stone-800"
-    data-dui-accordion-toggle
-    data-dui-accordion-target="#controlledAccordion2"
-    aria-expanded="false">
-    Why choose David UI?
-    <svg data-dui-accordion-icon width="1.5em" height="1.5em" strokeWidth="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="currentColor" class="w-4 h-4">
-      <path d="M6 9L12 15L18 9" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"></path>
-    </svg>
-  </div>
-  <div id="controlledAccordion2" class="overflow-hidden transition-all duration-300 border-b border-stone-200 dark:border-stone-700">
-    <p class="mb-5 text-sm text-stone-500 dark:text-stone-400">David UI provides an extensive collection of ready-to-use components with seamless integration and excellent developer experience.</p>
-  </div>
-</div>
 
+
+
+
+
+
+        <div data-aos="zoom-out-down"
+            class="relative flex flex-col items-center justify-center w-3/4 mx-auto text-center h-80 text-stone-50 mt-32">
+            <div class="absolute top-0 left-0 w-full py-10 mx-auto bg-fixed bg-right-bottom bg-no-repeat bg-cover artboard-horizontal artboard fixed-background h-80 md:bg-center"
+                style="background-image:url('{{ asset('images/discover5.webp') }}')"></div>
+            <div class="absolute inset-0 z-0 bg-black bg-opacity-30"></div>
+            <h2 data-aos="zoom-out-left" data-aos-delay="100" data-aos-duration="700"
+                class="font-sans text-2xl antialiased font-bold text-current md:text-3xl lg:text-4xl">
+                {{ __('pages.home.section4.title') }}</h2>
+        </div>
     </div>
 </x-guest-layout>

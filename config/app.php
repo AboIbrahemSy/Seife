@@ -15,6 +15,12 @@ return [
 
     'name' => env('APP_NAME', 'Laravel'),
 
+    'url_facebook' => 'https://www.facebook.com/profile.php?id=61577839586908',
+    'url_instagram' => 'https://www.instagram.com/damascus_international_fair',
+    'url_x' => 'https://x.com/FairDamascus',
+    'url_tiktok' => 'https://www.tiktok.com/@fairdamascus?lang=en',
+    'url_youtube' => 'https://www.youtube.com/@DamascusInternational-Fair',
+
     /*
     |--------------------------------------------------------------------------
     | Application Environment

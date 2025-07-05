@@ -2,36 +2,32 @@
 
 namespace App\Http\Controllers;
 
-use Artesaos\SEOTools\Facades\JsonLd;
 use Artesaos\SEOTools\Facades\SEOMeta;
-use Artesaos\SEOTools\Facades\SEOTools;
 use Artesaos\SEOTools\Facades\OpenGraph;
 use Artesaos\SEOTools\Facades\TwitterCard;
+use Artesaos\SEOTools\Facades\JsonLd;
+use Artesaos\SEOTools\Facades\SEOTools;
 use Illuminate\Support\Facades\URL;
 
 abstract class Controller
 {
-    public function seoInfo($title = 'Seife', $page = 'Homepage', $description = 'Seife WebSite',
-        $keyword = ['']) {
+    public function seoInfo($page = 'home', $keyword = ['معرض دمشق الدولي', 'Damascus International Fair'])
+    {
+        $title = __('seo.' . $page . '.title');
+        $description = __('seo.' . $page . '.description');
 
-        SEOMeta::addMeta('charset','utf-8','name');
-        SEOMeta::addMeta('viewport', 'width=device-width, initial-scale=1', 'name');
-        SEOMeta::addMeta('csrf-token', csrf_token(), 'name');
         SEOMeta::setTitle($title);
         SEOMeta::setDescription($description);
-        // SEOTools::addImages(route('ImageFiles',['title'=>'logo-2','type'=>'png']));
         SEOMeta::setCanonical(URL::current());
         SEOMeta::addKeyword($keyword);
-        SEOMeta::addMeta('page', $page, 'property');
-        SEOMeta::addMeta('apple-mobile-web-app-status-bar', '#121212', 'name');
-        SEOMeta::addMeta('mobile-web-app-capable', 'yes', 'name');
-        OpenGraph::setDescription($description);
+
         OpenGraph::setTitle($title);
+        OpenGraph::setDescription($description);
         OpenGraph::setUrl(URL::current());
-        OpenGraph::addProperty('type', 'WebPage');
-        OpenGraph::addProperty('locale', 'ar_AE');
+        OpenGraph::addProperty('type', 'website');
+        OpenGraph::addProperty('locale', app()->getLocale() == 'ar' ? 'ar_AE' : 'en_GB');
         OpenGraph::addProperty('locale:alternate', ['en_GB', 'ar_AE']);
-        // og:video
+                // og:video
         OpenGraph::addVideo(route('VideoFiles', ['title' => 'Header_Video']), [
             'secure_url' => route('VideoFiles', ['title' => 'Header_Video']),
             'type' => 'video/mp4',
@@ -46,72 +42,38 @@ abstract class Controller
         //     'height' => 200,
         // ]);
 
-        TwitterCard::setTitle($title); // title of twitter card tag
-        TwitterCard::setSite(URL::current()); // site of twitter card tag
-        TwitterCard::setDescription($description); // description of twitter card tag
-        // TwitterCard::setUrl(route('welcome')); // url of twitter card tag
-        // TwitterCard::setImage(route('ImageFiles', ['title' => 's-logo', 'type' => 'png'])); // add image url
+        TwitterCard::setTitle($title);
+        TwitterCard::setDescription($description);
+        TwitterCard::setSite(URL::current());
 
         JsonLd::addValues([
-            "@type" => "WebPage",
+            '@type' => 'WebPage',
             'name' => $title,
             'url' => URL::current(),
-            // 'image' => route('ImageFiles', ['title' => 's-logo', 'type' => 'png']),
-            // 'logo' => route('ImageFiles', ['title' => 's-logo', 'type' => 'png']),
             'publisher' => [
                 '@type' => 'Organization',
-                'name' => 'LWA7',
+                'name' => config('app.name'),
                 'logo' => [
                     '@type' => 'ImageObject',
-                    // 'url' => route('ImageFiles', ['title' => 's-logo', 'type' => 'png']),
+                    'url' => asset('images/Logo2.webp'),
                 ]
             ],
             'sameAs' => [
                 config('app.url_facebook'),
                 config('app.url_instagram'),
-                config('app.url_tiktok')
-                ],
+                config('app.url_x'),
+                config('app.url_tiktok'),
+                config('app.url_youtube'),
+            ],
             'contactPoint' => [
-                "@type" => "ContactPoint",
-                "telephone" => "+46073-567-443",
-                "contactType" => "Customer Service"
+                '@type' => 'ContactPoint',
+                'telephone' => '+963988883215',
+                'contactType' => 'Customer Service'
             ],
-            'breadcrumb' => [
-                "@type" => "BreadcrumbList",
-                'itemListElement' => [
-                    [
-                        "@type" => "ListItem",
-                        "position" => 1,
-                        "name" => "Home",
-                        "item" => route('home')
-                    ],
-                    [
-                        "@type" => "ListItem",
-                        "position" => 2,
-                        "name" => "About",
-                        "item" => route('about')
-                    ],
-                    [
-                        "@type" => "ListItem",
-                        "position" => 3,
-                        "name" => "contact",
-                        "item" => route('contact')
-                    ],
-                ],
-            ],
-            'description' => $description
+            'description' => $description,
         ]);
 
-        // SEOTools::metatags();
-        // SEOTools::twitter();
-        // SEOTools::opengraph();
-        // SEOTools::jsonLd();
-
         SEOTools::setTitle($title);
-        // SEOTools::getTitle($session = false);
         SEOTools::setDescription($description);
-        // SEOTools::setCanonical($url);
-        // SEOTools::addImages(route('ImageFiles', ['title' => 's-logo', 'type' => 'png']));
-
     }
 }

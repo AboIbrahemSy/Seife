@@ -75,8 +75,8 @@
                 <x-full-card image="{{ $article->image }}" title="{{ $article->title }}"
                     description="{{ $article->content }}" url="{{ $article->id }}" />
             @empty
-                <div class="mb-8 font-sans text-4xl antialiased font-bold text-center md:text-5xl text-brand-200">
-                    No Articles
+                <div class="col-span-3 mb-8 font-sans text-4xl antialiased font-bold text-center md:text-5xl text-brand-200">
+                    {{ __('pages.no_articles') }}
                 </div>
             @endforelse
         </div>

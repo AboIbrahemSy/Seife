@@ -98,7 +98,7 @@
             @error('email') <span class="text-xs text-red-600">{{ $message }}</span> @enderror
 
             <label class="block mb-1 font-medium">{{ __('forms.phone_number') }}</label>
-            <input wire:model.defer="phone_number" type="text" class="w-full px-3 py-2 mt-1 border border-gray-300 rounded focus:border-brand-500 focus:ring focus:ring-brand-100" />
+            <input wire:model.defer="phone_number" type="tel" pattern="[0-9+\-() ]{7,20}" class="w-full px-3 py-2 mt-1 border border-gray-300 rounded focus:border-brand-500 focus:ring focus:ring-brand-100" />
             @error('phone_number') <span class="text-xs text-red-600">{{ $message }}</span> @enderror
 
             <div class="flex justify-between mt-4">

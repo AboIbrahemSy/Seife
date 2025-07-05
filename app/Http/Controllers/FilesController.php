@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Jenssegers\Agent\Facades\Agent;
-
 use Spatie\Sitemap\Sitemap;
+
+use Illuminate\Support\Carbon;
+use Jenssegers\Agent\Facades\Agent;
 use Spatie\Sitemap\Tags\Url as SitemapUrl;
 
 class FilesController extends Controller
@@ -25,56 +26,73 @@ class FilesController extends Controller
         $file = public_path("sitemap.xml");
         return response()->file($file);
     }
+
     public function createSiteMap()
     {
         Sitemap::create()
-            ->add(SitemapUrl::create('/')
-                    ->setLastModificationDate(Carbon::yesterday())
-                    ->setChangeFrequency(SitemapUrl::CHANGE_FREQUENCY_WEEKLY)
-                    ->setPriority(10))
-            ->add(SitemapUrl::create('/about')
-                    ->setLastModificationDate(Carbon::yesterday())
-                    ->setChangeFrequency(SitemapUrl::CHANGE_FREQUENCY_WEEKLY)
-                    ->setPriority(6))
-            ->add(SitemapUrl::create('/quiz')
-                    ->setLastModificationDate(Carbon::yesterday())
-                    ->setChangeFrequency(SitemapUrl::CHANGE_FREQUENCY_WEEKLY)
-                    ->setPriority(9))
-            ->add(SitemapUrl::create('/purchase-ebook')
-                    ->setLastModificationDate(Carbon::yesterday())
-                    ->setChangeFrequency(SitemapUrl::CHANGE_FREQUENCY_WEEKLY)
-                    ->setPriority(9))
-            ->add(SitemapUrl::create('/checkout')
-                    ->setLastModificationDate(Carbon::yesterday())
-                    ->setChangeFrequency(SitemapUrl::CHANGE_FREQUENCY_WEEKLY)
-                    ->setPriority(9))
-            ->add(SitemapUrl::create('/contact')
-                    ->setLastModificationDate(Carbon::yesterday())
-                    ->setChangeFrequency(SitemapUrl::CHANGE_FREQUENCY_WEEKLY)
-                    ->setPriority(6))
-            ->add(SitemapUrl::create('/subscription-terms')
-                    ->setLastModificationDate(Carbon::yesterday())
-                    ->setChangeFrequency(SitemapUrl::CHANGE_FREQUENCY_WEEKLY)
-                    ->setPriority(8))
-            ->add(SitemapUrl::create('/terms-of-service')
-                    ->setLastModificationDate(Carbon::yesterday())
-                    ->setChangeFrequency(SitemapUrl::CHANGE_FREQUENCY_WEEKLY)
-                    ->setPriority(8))
-            ->add(SitemapUrl::create('/privacy-policy')
-                    ->setLastModificationDate(Carbon::yesterday())
-                    ->setChangeFrequency(SitemapUrl::CHANGE_FREQUENCY_WEEKLY)
-                    ->setPriority(8))
-            ->add(SitemapUrl::create('/cookies-policy')
-                    ->setLastModificationDate(Carbon::yesterday())
-                    ->setChangeFrequency(SitemapUrl::CHANGE_FREQUENCY_WEEKLY)
-                    ->setPriority(8))
-            ->add(SitemapUrl::create('/refund-policy')
-                    ->setLastModificationDate(Carbon::yesterday())
-                    ->setChangeFrequency(SitemapUrl::CHANGE_FREQUENCY_WEEKLY)
-                    ->setPriority(8))
-
+            ->add(SitemapUrl::create(route('home'))
+                ->setLastModificationDate(Carbon::yesterday())
+                ->setChangeFrequency(SitemapUrl::CHANGE_FREQUENCY_WEEKLY)
+                ->setPriority(1.0))
+            ->add(SitemapUrl::create(route('audios'))
+                ->setLastModificationDate(Carbon::yesterday())
+                ->setChangeFrequency(SitemapUrl::CHANGE_FREQUENCY_WEEKLY)
+                ->setPriority(0.9))
+            ->add(SitemapUrl::create(route('events'))
+                ->setLastModificationDate(Carbon::yesterday())
+                ->setChangeFrequency(SitemapUrl::CHANGE_FREQUENCY_WEEKLY)
+                ->setPriority(0.9))
+            ->add(SitemapUrl::create(route('book_stand'))
+                ->setLastModificationDate(Carbon::yesterday())
+                ->setChangeFrequency(SitemapUrl::CHANGE_FREQUENCY_WEEKLY)
+                ->setPriority(0.8))
+            ->add(SitemapUrl::create(route('gallery'))
+                ->setLastModificationDate(Carbon::yesterday())
+                ->setChangeFrequency(SitemapUrl::CHANGE_FREQUENCY_WEEKLY)
+                ->setPriority(0.8))
+            ->add(SitemapUrl::create(route('clients'))
+                ->setLastModificationDate(Carbon::yesterday())
+                ->setChangeFrequency(SitemapUrl::CHANGE_FREQUENCY_WEEKLY)
+                ->setPriority(0.7))
+            ->add(SitemapUrl::create(route('subscribe'))
+                ->setLastModificationDate(Carbon::yesterday())
+                ->setChangeFrequency(SitemapUrl::CHANGE_FREQUENCY_WEEKLY)
+                ->setPriority(0.7))
+            ->add(SitemapUrl::create(route('visitor'))
+                ->setLastModificationDate(Carbon::yesterday())
+                ->setChangeFrequency(SitemapUrl::CHANGE_FREQUENCY_WEEKLY)
+                ->setPriority(0.7))
+            ->add(SitemapUrl::create(route('investor'))
+                ->setLastModificationDate(Carbon::yesterday())
+                ->setChangeFrequency(SitemapUrl::CHANGE_FREQUENCY_WEEKLY)
+                ->setPriority(0.7))
+            ->add(SitemapUrl::create(route('discover'))
+                ->setLastModificationDate(Carbon::yesterday())
+                ->setChangeFrequency(SitemapUrl::CHANGE_FREQUENCY_WEEKLY)
+                ->setPriority(0.7))
+            ->add(SitemapUrl::create(route('news'))
+                ->setLastModificationDate(Carbon::yesterday())
+                ->setChangeFrequency(SitemapUrl::CHANGE_FREQUENCY_WEEKLY)
+                ->setPriority(0.8))
+            ->add(SitemapUrl::create(route('about'))
+                ->setLastModificationDate(Carbon::yesterday())
+                ->setChangeFrequency(SitemapUrl::CHANGE_FREQUENCY_WEEKLY)
+                ->setPriority(0.8))
+            ->add(SitemapUrl::create(route('faq'))
+                ->setLastModificationDate(Carbon::yesterday())
+                ->setChangeFrequency(SitemapUrl::CHANGE_FREQUENCY_WEEKLY)
+                ->setPriority(0.7))
+            ->add(SitemapUrl::create(route('contact'))
+                ->setLastModificationDate(Carbon::yesterday())
+                ->setChangeFrequency(SitemapUrl::CHANGE_FREQUENCY_WEEKLY)
+                ->setPriority(0.7))
+            ->add(SitemapUrl::create(route('staff_application'))
+                ->setLastModificationDate(Carbon::yesterday())
+                ->setChangeFrequency(SitemapUrl::CHANGE_FREQUENCY_WEEKLY)
+                ->setPriority(0.6))
             ->writeToFile(public_path('sitemap.xml'));
     }
+
 
     public function robotstxt()
     {
@@ -91,30 +109,30 @@ class FilesController extends Controller
         return abort(404);
     }
 
-    public function imageFiles($title, $type = 'png')
-    {
-        $file = Media::where('title', $title)->first();
-        if (!$file) {
-            return abort(404);
-        }
+    // public function imageFiles($title, $type = 'png')
+    // {
+    //     $file = Media::where('title', $title)->first();
+    //     if (!$file) {
+    //         return abort(404);
+    //     }
 
-        if ($type == 'thumbnail') {
-            $curations = $file->curations;
-            if (!$curations) {
-                return abort(404);
-            }
+    //     if ($type == 'thumbnail') {
+    //         $curations = $file->curations;
+    //         if (!$curations) {
+    //             return abort(404);
+    //         }
 
-            $thumbnail = $curations[0]['curation'];
-            if ($thumbnail['key'] != 'thumbnail') {
-                return abort(404);
-            }
+    //         $thumbnail = $curations[0]['curation'];
+    //         if ($thumbnail['key'] != 'thumbnail') {
+    //             return abort(404);
+    //         }
 
-            $getFile = storage_path("app/{$thumbnail['disk']}/{$thumbnail['path']}");
-            return response()->file($getFile);
-        } elseif ($type == 'png') {
-            $getFile = storage_path("app/{$file->disk}/{$file->path}");
-            return response()->file($getFile);
-        }
-        return abort(404);
-    }
+    //         $getFile = storage_path("app/{$thumbnail['disk']}/{$thumbnail['path']}");
+    //         return response()->file($getFile);
+    //     } elseif ($type == 'png') {
+    //         $getFile = storage_path("app/{$file->disk}/{$file->path}");
+    //         return response()->file($getFile);
+    //     }
+    //     return abort(404);
+    // }
 }

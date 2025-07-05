@@ -4,6 +4,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FilesController;
 use App\Http\Controllers\IndexController;
 
+
+// Route::middleware('web')->group(function () {});
+
 Route::controller(IndexController::class)->group(function () {
     Route::get('/', 'home')->name('home');
     Route::get('/audios', 'audios')->name('audios');
@@ -20,14 +23,16 @@ Route::controller(IndexController::class)->group(function () {
     Route::get('/faq', 'faq')->name('faq');
     Route::get('/contact', 'contact')->name('contact');
     Route::post('/contact/send', 'contactSend')->name('contact.send');
+    Route::get('/careers', 'careersCreate')->name('staff_application');
+    Route::post('/careers', 'careersStore')->name('staff.store');
 });
 
 Route::controller(FilesController::class)->group(function () {
-    Route::get('/ImageFiles/{title}/{type}', 'imageFiles')->name('ImageFiles');
+    // Route::get('/ImageFiles/{title}/{type}', 'imageFiles')->name('ImageFiles');
     Route::get('/VideoFiles/{title}', 'videoFiles')->name('VideoFiles');
     Route::get('/sitemap', 'sitemap')->name('sitemap');
     Route::get('/sitemap.xml', 'sitemap')->name('sitemap.xml');
-    // Route::get('/create-sitemap','createSiteMap');
+    Route::get('/create-sitemap','createSiteMap');
     Route::get('/robots.txt', 'robotstxt')->name('robots.txt');
     Route::get('/robots', 'robotstxt')->name('robots');
 });

@@ -1,12 +1,55 @@
 <x-guest-layout>
     <x-hero image="{{ asset('images/gallery_hero.webp') }}" title="{{ __('pages.about_title') }}" />
 
-    <div class="container mx-auto my-24">
+    <div class="container mx-auto my-24 {{ app()->getLocale() == 'ar' ? 'rtl text-right' : '' }}">
+
+
+        <div class="w-3/4 mx-auto mb-10">
+            <h1 data-aos="zoom-out-left" data-aos-delay="100" data-aos-duration="700"
+                class="w-full font-sans text-3xl antialiased font-bold md:text-4xl text-brand-500">
+                {{ __('pages.about.section1.title') }}
+            </h1>
+
+            <p data-aos="zoom-out-down" data-aos-delay="200" data-aos-duration="700" class="mt-6 font-sans text-base antialiased text-current">
+                {{ __('pages.about.section1.paragraph') }}</p>
+        </div>
+
+
+
+      <div class="bg-stone-50 rounded-xl border border-stone-100 overflow-hidden w-3/4 mx-auto mb-12" data-aos="fade-up">
+        <div class="relative h-24 bg-brand-500 rounded-lg border border-stone-200 m-2">
+          <div class="relative p-4 h-full flex items-center justify-between">
+            <div class="flex items-center space-x-3 gap-4">
+              <div class="w-24 h-20" data-aos="fade-right" data-aos-delay="100" data-aos-duration="700">
+                <img src="{{ asset('images/about1.webp') }}" alt="{{ __('pages.msg1.who') }}" class="rounded-md h-full">
+              </div>
+              <div class="text-white" data-aos="fade-left" data-aos-delay="200" data-aos-duration="700">
+                <h3 class="font-bold text-lg">{{ __('pages.msg1.who') }}</h3>
+                <p class="text-white/80 text-sm">{{ __('pages.msg1.des') }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="p-4">
+          <p class="text-stone-700 text-base mb-4 leading-relaxed" data-aos="fade-zoom-up" data-aos-delay="300" data-aos-duration="700">{!!__('pages.msg1.msg')!!}</p>
+        </div>
+      </div>
 
         <div class="grid grid-cols-4 gap-6 ">
 
             @foreach ($staff as $_staff)
-                <div class="w-full text-center rounded-lg border shadow-sm overflow-hidden bg-white border-stone-200 shadow-stone-950/5 max-w-xs relative min-h-[300px]"
+            @php
+                $aosAnimations = [
+                    'fade-up', 'fade-down', 'fade-right', 'fade-left',
+                    'fade-up-right', 'fade-up-left', 'fade-down-right', 'fade-down-left',
+                    'flip-left', 'flip-right', 'flip-up', 'flip-down',
+                    'zoom-in', 'zoom-in-up', 'zoom-in-down', 'zoom-in-left', 'zoom-in-right',
+                    'zoom-out', 'zoom-out-up', 'zoom-out-down', 'zoom-out-right', 'zoom-out-left',
+                ];
+                // احصل على عشوائي
+                $aos = $aosAnimations[array_rand($aosAnimations)];
+            @endphp
+                <div data-aos="{{ $aos }}" data-aos-delay="100" data-aos-duration="700" class="w-full text-center rounded-lg border shadow-sm overflow-hidden bg-white border-stone-200 shadow-stone-950/5 max-w-xs relative min-h-[300px]"
                     style="background-image: url('{{ asset($_staff->image) }}'); background-size: cover; background-position: center;">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
                     <div
@@ -37,5 +80,12 @@
                 </div>
             @endforeach
         </div>
+
+
+
+        <div data-aos="zoom-out-right" class="flex justify-center my-12 mt-24">
+                <img src="{{ asset('images/Logo2.webp') }}" class="w-1/2 h-[300px] h-auto"
+                    alt="section image {{ __('pages.about.section1.title') }}">
+            </div>
     </div>
 </x-guest-layout>

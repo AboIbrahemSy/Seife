@@ -17,6 +17,7 @@ return [
         "faq"        => "FAQ",
         "contact"    => "Contact Us",
         "logo"       => "Syrian Exhibition Organization",
+        'staff_application' => 'Join With Us',
     ],
     "home" => [
         'hero' => [
@@ -110,7 +111,7 @@ Over ten days, from August 27 to September 5, 2025, you'll meet experts from var
     "investor_form_title"  => "Investor",
     "subscribe_form_title" => "Subscribe",
     "visitor_form_title"   => "Visitor Form",
-
+    'staff_application_title' => 'Join With Us',
     "home_title"           => "Home",
     "audios_title"         => "Audios",
     "events_title"         => "Events Agenda",
@@ -143,4 +144,41 @@ Over ten days, from August 27 to September 5, 2025, you'll meet experts from var
     'visitor'              => 'Visitors',
     'audio'                => 'Audio Files',
     'show'                 => 'Show Details',
+    'no_articles' => 'No Articles',
+
+
+    'msg1' => [
+        'who' => 'Mohammad Hamza',
+        'des' => 'General Director of Syrian Establishment for International Fairs & Exhibitions
+
+Chairman of the Organizing Committee of Damascus International Fair',
+        'msg' => 'In the name of GOD most merciful, most graceful
+
+
+
+Ladies and gentlemen, friends from inside and outside homeland,
+
+
+
+At this historic moment, I am honoured to present to you the outline of a new and exceptional edition of Damascus International Fair – the 62nd edition – which is not merely an economic or cultural event, but a declaration of truly launch towards NEW SYRIA.
+
+
+
+This is the first edition in size and depth since 1970. Since it comes under the generous patronage of H.E. President Ahmad al-Shar’a, a support that clearly reflects high official interest at the highest levels and the state‘s belief that this fair is not only a gateway for investment but also a one for dialogue, for the future, and for reshaping Syria’s image before the world as it truly is: proud, vibrant, moving forward with peace, security, reconstruction, and openness.
+
+
+
+Syrian government, with all its ministries and institutions, under the guidance of higher leadership, strongly supports the return of economic life and spares no effort in rebuilding Syria on modern and open foundations. Damascus International Fair is not just an event; it is part of an integrated strategic project to reposition Syria on the global economic and cultural map. To participant: countries, companies, investors, media, and artistic entities:
+
+I say to you - you are not just attending a fair; you are writing with us a new chapter in Syria’s story. You will be true partners in rebuilding a homeland that deserves life.
+
+
+
+The Ministry of Economy & Industry together with Syrian Establishment for International Fairs & Exhibitions, work with all energy and sincerity. And we pledge that this edition will be a unique experience on all levels - organizing, hosting, and supporting - to ensure that Damascus remains - as it has always been - capital for gathering, platform for creativity, and a beacon of peace.
+
+
+
+Welcome to Damascus International Fair. Welcome to New Syria.',
+
+    ],
 ];

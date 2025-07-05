@@ -14,6 +14,7 @@
         // ["route" => "about",        "label" => __("pages.links.about")],
         // ["route" => "faq",          "label" => __("pages.links.faq")],
         // ["route" => "contact",      "label" => __("pages.links.contact")],
+        // ["route" => "staff_application",      "label" => __("pages.links.staff_application")],
     ];
     $currentLocale = app()->getLocale();
     $arrLang = config('app.locales');
@@ -92,6 +93,8 @@
                             class="block px-4 py-2 text-sm text-center rounded-md text-stone-800 hover:bg-stone-100">{{ __('pages.links.faq') }}</a>
                         <a href="{{ route('contact') }}"
                             class="block px-4 py-2 text-sm text-center rounded-md text-stone-800 hover:bg-stone-100">{{ __('pages.links.contact') }}</a>
+                        <a href="{{ route('staff_application') }}"
+                            class="block px-4 py-2 text-sm text-center rounded-md text-stone-800 hover:bg-stone-100">{{ __('pages.links.staff_application') }}</a>
                     </div>
                 </div>
 

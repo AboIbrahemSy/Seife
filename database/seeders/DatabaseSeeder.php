@@ -27,12 +27,8 @@ class DatabaseSeeder extends Seeder
 
         $this->call([
             StaffSeeder::class,
-        ]);
-
-
-        \App\Models\Language::insert([
-            ['name'=>'English','code'=>'en'],
-            ['name'=>'العربية','code'=>'ar'],
+            LanguagesSeeder::class,
+            BreakingNewsSeeder::class,
         ]);
 
         \App\Models\Audio::insert([

@@ -100,6 +100,7 @@ document.addEventListener("DOMContentLoaded", function () {
             type: "loop",
             drag: "free",
             arrows: false,
+            pagination: false,
             focus: "center",
             perPage: 2,
             autoScroll: {

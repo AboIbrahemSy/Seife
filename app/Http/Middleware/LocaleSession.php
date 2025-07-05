@@ -16,17 +16,14 @@ class LocaleSession
      */
     public function handle(Request $request, Closure $next): Response
     {
-        $localeKey = config('app.localesKey', ['ar', 'en']);
+        $availableLocales = ['en', 'ar'];
 
-        if ($request->has('lang')) {
-            $validatedData = $request->validate([
-                'lang' => 'string|max:2|in:' . implode(',', $localeKey)
-            ]);
-            session(['LOCALELANG' => $validatedData['lang']]);
+        if ($request->has('lang') && in_array($request->query('lang'), $availableLocales)) {
+            session(['locale' => $request->query('lang')]);
         }
 
-        $locale = session('LOCALELANG', app()->getLocale());
-        App::setLocale($locale);
+        // Set locale from session if exists, otherwise default locale
+        App::setLocale(session('locale', config('app.locale')));
 
         return $next($request);
     }

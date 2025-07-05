@@ -1,7 +1,6 @@
 <div class="flex flex-col items-center justify-start p-6">
-    <div class="flex flex-col w-3/4 gap-4 p-4 mb-8 space-y-3 border border-gray-200 shadow-lg md:flex-row md:items-end md:space-x-4 md:space-y-0 bg-white/80 rounded-2xl"
+    <div class="flex flex-col w-3/4 md:w-1/2 gap-4 p-4 mb-8 space-y-3 border border-gray-200 shadow-lg md:flex-row md:items-end md:space-x-4 md:space-y-0 bg-white/80 rounded-2xl"
         >
-        {{-- اختيار اللغة --}}
         <div class="flex-1">
             <label for="language" class="block mb-1 text-sm font-medium text-gray-700">
                 {{ __('forms.filter_by_lang') }}
@@ -16,13 +15,13 @@
         </div>
 
         {{-- البحث --}}
-        <div class="flex-1">
+        {{-- <div class="flex-1">
             <label for="search" class="block mb-1 text-sm font-medium text-gray-700">
                 <span class="hidden md:inline">{{ __('forms.search_title') }}</span>
             </label>
             <input id="search" wire:model.debounce="search" type="text" placeholder="{{ __('forms.search_title') }}"
                 class="w-full transition-all duration-300 border-gray-300 rounded-lg shadow form-input focus:border-primary focus:ring-primary">
-        </div>
+        </div> --}}
 
         <div class="flex items-end">
             <button wire:click="applyFilter" class="flex items-center justify-center gap-2 px-8 py-2 font-semibold text-white transition-all duration-200 shadow rounded-xl bg-brand-600 hover:bg-brand-500 ">
