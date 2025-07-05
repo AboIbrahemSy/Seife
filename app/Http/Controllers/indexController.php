@@ -9,7 +9,7 @@ use App\Models\StaffApplication;
 use Illuminate\Http\Request;
 use App\Models\ContactMessage;
 
-class indexController extends Controller
+class IndexController extends Controller
 {
     public function home(){
         $this->seoInfo('home');
