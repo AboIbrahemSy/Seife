@@ -20,14 +20,17 @@ class IndexController extends Controller
         return view('audios');
     }
     public function events(){
+        $this->seoInfo('events');
         $events = Events::all();
         $calendarEvents = Events::event();;
         return view('events', compact('events', 'calendarEvents'));
     }
     public function bookStand(){
+        $this->seoInfo('book_stand');
         return view('book_stand');
     }
     public function gallery(){
+        $this->seoInfo('gallery');
         $images = [];
         $galleryPath = public_path('gallery');
         foreach (glob($galleryPath.'/*.{jpg,JPG,jpeg,JPEG,png,PNG,gif,GIF}', GLOB_BRACE) as $file) {
