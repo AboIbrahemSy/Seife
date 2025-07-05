@@ -1,0 +1,30 @@
+{
+  "resources/css/app.css": {
+    "file": "assets/app-C1CG8tk8.css",
+    "src": "resources/css/app.css",
+    "isEntry": true
+  },
+  "resources/css/filament/theme.css": {
+    "file": "assets/theme-B1WC2Ar5.css",
+    "src": "resources/css/filament/theme.css",
+    "isEntry": true
+  },
+  "resources/js/app.js": {
+    "file": "assets/app-C6vDccnw.js",
+    "name": "app",
+    "src": "resources/js/app.js",
+    "isEntry": true,
+    "css": [
+      "assets/app-qPb67Q4e.css"
+    ]
+  },
+  "resources/js/vanilla-cookieconsent.js": {
+    "file": "assets/vanilla-cookieconsent-Ca5Qjqfx.js",
+    "name": "vanilla-cookieconsent",
+    "src": "resources/js/vanilla-cookieconsent.js",
+    "isEntry": true,
+    "css": [
+      "assets/vanilla-cookieconsent-DRDZlMXm.css"
+    ]
+  }
+}
